@@ -1,0 +1,57 @@
+<%
+if (theme.index.slogan.enable) {
+  page.subtitle = theme.index.slogan.text || config.subtitle || ''
+}
+page.banner_img = theme.index.banner_img
+page.banner_img_height = theme.index.banner_img_height
+page.banner_mask_alpha = theme.index.banner_mask_alpha
+%>
+
+<% page.posts.each(function (post) { %>
+  <% var post_url = url_for(post.path), index_img = post.index_img || theme.post.default_index_img %>
+  <a class="mx-auto index-card" href="<%= post_url %>" target="<%- theme.index.post_url_target %>">
+    <% if (index_img) { %>
+      <div class="index-img">
+        <img src="<%= url_for(index_img) %>" alt="<%= post.title %>">
+      </div>
+    <% } %>
+    <article class="index-info">
+      <h2 class="index-header">
+        <% if (theme.index.post_sticky && theme.index.post_sticky.enable && post.sticky > 0) { %>
+          <i class="index-pin <%= theme.index.post_sticky && theme.index.post_sticky.icon %>" title="Pin on top"></i>
+        <% } %>
+          <%= post.title %>
+      </h2>
+
+      <div class="index-btm post-metas">
+        <% if (theme.index.post_meta.date) { %>
+          <div class="post-meta mr-3">
+            <time datetime="<%= full_date(post.date, 'YYYY-MM-DD HH:mm') %>" pubdate>
+              <%- date(post.date, config.date_format) %>
+            </time>
+          </div>
+        <% } %>
+        <% if (theme.index.post_meta.category && post.categories.length > 0) { %>
+          <div class="post-meta mr-3 d-flex align-items-center" style="background: rgb(240, 147, 43); padding: 0 10px; color: white; border-radius: 5px;">
+            <%- partial('_partials/category-chains', { categories: post.categories, limit: 1 }) %>
+          </div>
+        <% } %>
+        <% if (theme.index.post_meta.tag && post.tags.length > 0) { %>
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            <% post.tags.each(function(tag){ %>
+              <a href="<%= url_for(tag.path) %>">#<%- tag.name %></a>
+            <% }) %>
+          </div>
+        <% } %>
+      </div>
+      <% var excerpt = post.description || post.excerpt || (theme.index.auto_excerpt.enable && post.content) %>
+      <div style="margin-top: 20px;">
+        <%- strip_html(excerpt).substring(0, 250).trim().replace(/\n/g, ' ') %>
+      </div>
+
+    </article>
+  </a>
+<% }) %>
+
+<%- partial('_partials/paginator') %>

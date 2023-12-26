@@ -1,0 +1,98 @@
+.index-card
+  padding: 20px
+  background: var(--article-list-color)
+  border-radius: 10px
+  display: flex
+  flex-direction: column
+  box-sizing: border-box
+  cursor: pointer
+  border: 2px solid var(--article-list-color)
+  transition: border 0.1s ease-in-out
+
+.index-card:hover
+  border: 2px solid var(--article-list-border-color-hover)
+
+@media (min-width: 767px)
+  .index-card:first-child
+    grid-column: 1/span 3
+    display: grid
+    grid-template-columns: 1fr 1.5fr
+    gap: 20px
+    margin-bottom: 40px
+
+    .index-info
+      justify-content unset
+
+    img 
+      height: 18rem
+
+.index-img
+  img
+    display block
+    width 100%
+    height 15rem
+    object-fit cover
+    border-radius .25rem
+    background-color transparent
+
+.index-info
+  display flex
+  flex-direction column
+  justify-content space-between
+  padding-top .5rem
+  padding-bottom .5rem
+
+.index-header
+  color var(--text-color)
+  font-size 1.5rem
+  font-weight bold
+  line-height 1.4
+  overflow hidden
+  text-overflow ellipsis
+  margin-bottom .25rem
+
+  .index-pin
+    color var(--text-color)
+    font-size 1.5rem
+    margin-right .15rem
+
+.index-btm
+  color var(--sec-text-color)
+
+  a
+    color var(--sec-text-color)
+
+.index-excerpt
+  color var(--sec-text-color)
+  margin 0.5rem 0 0.5rem 0
+  height calc(1.4rem * 3)
+  overflow hidden
+  display flex
+
+  & > div
+    width 100%
+    line-height 1.4rem
+    word-break break-word
+    display -webkit-box
+    -webkit-box-orient vertical
+    -webkit-line-clamp 3
+
+.index-excerpt__noimg
+  height auto
+  max-height calc(1.4rem * 3)
+
+@media (max-width: 767px)
+  .index-info
+    padding-top 1.25rem
+
+  .index-header
+    font-size 1.25rem
+    white-space normal
+    overflow hidden
+    word-break break-word
+    display -webkit-box
+    -webkit-box-orient vertical
+    -webkit-line-clamp 2
+
+    .index-pin
+      font-size 1.25rem

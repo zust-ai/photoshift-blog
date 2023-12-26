@@ -1,0 +1,53 @@
+.zust-footer
+  width: 100%
+  background-color: #000000
+  margin-top: 50px
+  padding: 50px 10vw
+  text-align: center
+  font-size: 14px
+  display: flex
+  flex-direction: column
+  color: white
+  border-bottom: 1px solid rgb(23, 23, 23)
+
+  &>div 
+    display: flex
+    &.company
+      flex: 1
+      margin-bottom: 120px
+    
+    &.links
+      flex: 1
+      display: grid
+      grid-template-columns: 1.5fr 1.4fr 1fr 1fr
+      gap: 20px
+      &>div
+        align-items: flex-start
+        display: flex
+        flex-direction: column
+      
+      h3 
+        text-decoration: underline
+        line-height: 3em
+        font-size: 1.6em
+        margin-bottom: 10px
+      
+      a
+        text-decoration: none
+        text-transform: none
+        color: rgb(187, 187, 187)
+        line-height: 2em
+      
+    
+  
+  @media screen and (max-width: 600px) 
+    flex-direction: column
+    h1
+      font-size: 4em
+    
+    &>div 
+      &.links
+        grid-template-columns: 1fr
+      
+    
+  
